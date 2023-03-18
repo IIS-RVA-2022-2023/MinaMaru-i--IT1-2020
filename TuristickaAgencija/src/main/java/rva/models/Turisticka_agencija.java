@@ -1,0 +1,61 @@
+package rva.models;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
+@Entity
+public class Turisticka_agencija implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="TURISTICKA_AGENCIJA_ID_GENERATOR")
+	@SequenceGenerator(name = "TURISTICKA_AGENCIJA_ID_GENERATOR", sequenceName = "TURISTICKA_AGENCIJA_SEQ", allocationSize = 1)
+	private int id;
+	
+
+	private String Naziv;
+	
+	private String Adresa;
+	
+	private String Kontakt;
+	
+	public String getKontakt() {
+		return Kontakt;
+	}
+
+	public void setKontakt(String kontakt) {
+		Kontakt = kontakt;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNaziv() {
+		return Naziv;
+	}
+
+	public void setNaziv(String naziv) {
+		this.Naziv = naziv;
+	}
+
+	public String getAdresa() {
+		return Adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.Adresa = adresa;
+	}
+
+	
+	
+	
+	
+}
