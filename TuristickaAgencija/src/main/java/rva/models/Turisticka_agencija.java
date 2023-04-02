@@ -16,7 +16,7 @@ public class Turisticka_agencija implements Serializable {
 	private int id;
 	
 
-	private String Naziv;
+	private String naziv;
 	
 	private String Adresa;
 	
@@ -39,11 +39,11 @@ public class Turisticka_agencija implements Serializable {
 	}
 
 	public String getNaziv() {
-		return Naziv;
+		return naziv;
 	}
 
 	public void setNaziv(String naziv) {
-		this.Naziv = naziv;
+		this.naziv = naziv;
 	}
 
 	public String getAdresa() {
