@@ -36,7 +36,7 @@ public class TuristickaAgencijaController{
 	public Optional<Turisticka_agencija> getTuristickaAgencijaById(@PathVariable("id")int turistickaAgencijaId){
 		return turistsickaAgencijaService.getTuristickaAgencijaById(turistickaAgencijaId);
 	}*/
-	@GetMapping("/turistickaAgencija/{id}")
+	@GetMapping("/turistickaAgencija/{id}")//vraca bas tu agenciju
 	public ResponseEntity<?> getTuristickaAgencijaById(@PathVariable("id")int turistickaAgencijaId){
 		if(turistickaAgencijaService.existsById(turistickaAgencijaId)) {
 			Optional<Turisticka_agencija> turistickaAgencija = turistickaAgencijaService.getTuristickaAgencijalById(turistickaAgencijaId);
