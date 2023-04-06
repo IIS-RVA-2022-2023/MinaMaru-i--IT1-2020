@@ -42,7 +42,9 @@ package rva.service;
  	public void deleteById(int id) {
  		aranzmanRepository.deleteById(id);
  	}
-
+ 	public List<Aranzman> findByHotel(Hotel hotel) {
+ 		return aranzmanRepository.findByHotel(hotel);
+ 	}
 
  	
  }

@@ -37,8 +37,8 @@ private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="Destinacija")
-	private Destinacija Destinacija;
+	@JoinColumn(name="destinacija")
+	private Destinacija destinacija;
 
 	public int getId() {
 		return id;
@@ -73,11 +73,11 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public Destinacija getDestinacija() {
-		return Destinacija;
+		return destinacija;
 	}
 
 	public void setDestinacija(Destinacija destinacija) {
-		this.Destinacija = destinacija;
+		this.destinacija = destinacija;
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import rva.models.Destinacija;
 import rva.models.Hotel;
 import rva.repository.HotelRepository;
 
@@ -14,6 +15,7 @@ public class HotelService {
 
 	@Autowired
 	private HotelRepository hotelRepository;
+	
 
 	public List<Hotel> getAll(){
 		return hotelRepository.findAll();
@@ -42,4 +44,9 @@ public class HotelService {
 	public void deleteById(int id) {
 		hotelRepository.deleteById(id);
 	}
+
+
+ 	public List<Hotel> findByDestinacija(Destinacija destinacija) {
+ 		return hotelRepository.findByDestinacija(destinacija);
+ 	}
 }

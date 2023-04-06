@@ -26,8 +26,8 @@ public class AranzmanController {
 	@Autowired
     private AranzmanService aranzmanService;
 
-   /* @Autowired
-    private HotelService hotelService;*/
+   @Autowired
+    private HotelService hotelService;
 
     @GetMapping("aranzman")
     public ResponseEntity<List<Aranzman>> getAll() {
@@ -73,7 +73,20 @@ public class AranzmanController {
     	}       
     }
  
-	
+    @GetMapping("aranzmanHotel/{id}")
+    public ResponseEntity<?> getAranzmanByHotel(@PathVariable("id") int id) {
+        Optional<Hotel> hotelOpt = hotelService.findById(id);
+        if (hotelOpt.isPresent()) {
+            List<Aranzman> aranzmans = aranzmanService
+            		.findByHotel(hotelOpt.get());            
+            if(aranzmans.isEmpty()) {
+            	return new ResponseEntity<>("Za dati hotel nema aranzmana",
+            			HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(aranzmans, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Hotel nije pronadjen", HttpStatus.NOT_FOUND);
+    }
     @DeleteMapping("aranzman/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
     	if(aranzmanService.existsById(id)) {

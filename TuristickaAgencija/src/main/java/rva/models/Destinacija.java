@@ -31,7 +31,7 @@ private static final long serialVersionUID = 1L;
 	private String Opis;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="Destinacija")
+	@OneToMany(mappedBy="destinacija")
 	private List<Hotel> Hotel; 
 	//kreiramo listu hotel gde ce biti svi hoteli 
 	//koji su na nekoj destinaciji

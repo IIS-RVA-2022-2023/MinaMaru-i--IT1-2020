@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import rva.models.*;
+import rva.service.DestinacijaService;
 import rva.service.HotelService;
 
 @CrossOrigin
@@ -24,6 +25,9 @@ public class HotelController {
 	@Autowired
 	private HotelService hotelService;
 
+
+	@Autowired
+	private DestinacijaService destinacijaService;
 
 	@GetMapping("/hotel")
 	public ResponseEntity<List<Hotel>> getAll() {
@@ -49,6 +53,22 @@ public class HotelController {
 		return new ResponseEntity<>(hotel, HttpStatus.OK);
 	}
 	
+	//vraca koji se hoteli nalaze na id-ju prosledjene destinacija
+	 @GetMapping("destinacijaHotel/{id}")
+     public ResponseEntity<?> getHotelByDestinacija(@PathVariable("id") int id) {
+         Optional<Destinacija> destinacijaOpt = destinacijaService.findById(id);
+         if (destinacijaOpt.isPresent()) {
+             List<Hotel> hotels = hotelService
+             		.findByDestinacija(destinacijaOpt.get());            
+             if(hotels.isEmpty()) {
+             	return new ResponseEntity<>("Na destinaciji nema hotela",
+             			HttpStatus.NOT_FOUND);
+             }
+             return new ResponseEntity<>(hotels, HttpStatus.OK);
+         }
+         return new ResponseEntity<>("Destinacija nije pronadjena", HttpStatus.NOT_FOUND);
+     }
+
 	
 	@PostMapping("/hotel")
     public ResponseEntity<?> addHotel(@RequestBody Hotel hotel) {
@@ -81,4 +101,4 @@ public class HotelController {
     		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested resource has not been found");
     	}
     }
-}
+	}
