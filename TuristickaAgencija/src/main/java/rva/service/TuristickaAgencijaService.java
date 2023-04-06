@@ -34,4 +34,12 @@ public class TuristickaAgencijaService {
  	public List<Turisticka_agencija> getAllTuristickeAgencijeByPocetakNaziva(String pocetakNaziva){
  		return turistickaAgencijaRepository.getTuristickeAgencijeByPocetakNaziva(pocetakNaziva.toLowerCase());
  	}
+ 	
+ 	public Turisticka_agencija addTuristickaAgnecija(Turisticka_agencija turistickaAgencija) {
+ 		return turistickaAgencijaRepository.save(turistickaAgencija);
+ 	}
+
+ 	public void deleteById(int id) {
+ 		turistickaAgencijaRepository.deleteById(id);
+ 	}
  }

@@ -3,6 +3,9 @@ package rva.models;
 import java.io.Serializable;
 import java.sql.Date;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,16 +28,17 @@ private static final long serialVersionUID = 1L;
 	@SequenceGenerator(name = "Aranzman_ID_GENERATOR", sequenceName = "Aranzman_SEQ", allocationSize = 1)
 	private int id;
 	
-	@Column(name="Ukupna_cena")
-	private int Ukupna_cena;
+	@Column(name="ukupna_cena")
+	private double ukupna_cena;
 	
-	private boolean Placeno;
+	private boolean placeno;
 	
 	private Date Datum_realizacije;
 	
 	@ManyToOne
-	@JoinColumn(name="Hotel")
-	private Hotel Hotel;
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name="hotel")
+	private Hotel hotel;
 	
 	@ManyToOne
 	@JoinColumn(name="Turisticka_agencija")
@@ -48,20 +52,20 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 
-	public int getUkupna_cena() {
-		return Ukupna_cena;
+	public double getUkupna_cena() {
+		return ukupna_cena;
 	}
 
 	public void setUkupna_cena(int ukupna_cena) {
-		this.Ukupna_cena = ukupna_cena;
+		this.ukupna_cena = ukupna_cena;
 	}
 
 	public boolean isPlaceno() {
-		return Placeno;
+		return placeno;
 	}
 
 	public void setPlaceno(boolean placeno) {
-		this.Placeno = placeno;
+		this.placeno = placeno;
 	}
 
 	public Date getDatum_realizacije() {
@@ -73,11 +77,11 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public Hotel getHotel() {
-		return Hotel;
+		return hotel;
 	}
 
 	public void setHotel(Hotel hotel) {
-		this.Hotel = hotel;
+		this.hotel = hotel;
 	}
 
 	public Turisticka_agencija getTuristicka_agencija() {

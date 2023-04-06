@@ -3,6 +3,9 @@ package rva.models;
 import java.io.Serializable;
 //import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +27,7 @@ private static final long serialVersionUID = 1L;
 	@SequenceGenerator(name = "HOTEL_ID_GENERATOR", sequenceName = "HOTEL_SEQ", allocationSize = 1)
 	private int id;
 	
-	private String Naziv;
+	private String naziv;
 	
 	@Column(name="Broj_zvezdica")
 	private int Broj_zvezdica;
@@ -33,6 +36,7 @@ private static final long serialVersionUID = 1L;
 	private String Opis;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="Destinacija")
 	private Destinacija Destinacija;
 
@@ -45,11 +49,11 @@ private static final long serialVersionUID = 1L;
 	}
 
 	public String getNaziv() {
-		return Naziv;
+		return naziv;
 	}
 
 	public void setNaziv(String naziv) {
-		this.Naziv = naziv;
+		this.naziv = naziv;
 	}
 
 	public int getBroj_zvezdica() {

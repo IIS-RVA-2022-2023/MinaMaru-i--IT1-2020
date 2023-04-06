@@ -24,7 +24,7 @@ private static final long serialVersionUID = 1L;
 	@SequenceGenerator(name = "DESTINACIJA_ID_GENERATOR", sequenceName = "DESTINACIJA_SEQ", allocationSize = 1)
 	private int id;
 	
-	private String Mesto;
+	private String mesto;
 	
 	private String Drzava;
 	
@@ -43,10 +43,10 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 	public String getMesto() {
-		return Mesto;
+		return mesto;
 	}
 	public void setMesto(String mesto) {
-		this.Mesto = mesto;
+		this.mesto = mesto;
 	}
 	public String getDrzava() {
 		return Drzava;

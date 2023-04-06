@@ -54,8 +54,7 @@ public class Turisticka_agencija implements Serializable {
 		this.Adresa = adresa;
 	}
 
-	
-	
-	
-	
 }
+	
+	
+	
