@@ -92,6 +92,7 @@ public class HotelController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	
 	@DeleteMapping("/hotel/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
     	if(hotelService.existsById(id)) {
