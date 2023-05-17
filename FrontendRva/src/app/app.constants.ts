@@ -1,0 +1,1 @@
+export const TURAGENCIJA_URL='http://localhost:8081/turistickaAgencija';
