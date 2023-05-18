@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { TURAGENCIJA_URL } from '../app.constants';
+import {Turisticka_agencija} from '../models/turisticka-agencija'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,17 @@ export class TuristickaAgencijaService {
 
   public  getAllTurAgencije(): Observable<any>{
     return this.httpClient.get(TURAGENCIJA_URL);
+}
   
+  public addTuristickaAgnecija(turistickaAgencija: Turisticka_agencija): Observable<any>{
+    return this.httpClient.post(TURAGENCIJA_URL, turistickaAgencija);
 }
 
+  public updateArtikl(turistickaAgencija: Turisticka_agencija): Observable<any>{
+    return this.httpClient.put(TURAGENCIJA_URL+"/"+turistickaAgencija.id, turistickaAgencija);
+}
+
+  public deleteArtikl(turistickaAgencijaId: number): Observable<any>{
+    return this.httpClient.delete(TURAGENCIJA_URL+"/"+turistickaAgencijaId);
+}
 }

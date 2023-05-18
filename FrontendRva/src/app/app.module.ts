@@ -18,6 +18,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ArtikalDialogComponent } from './dialog/artikal-dialog/artikal-dialog.component';
+import { TuristickaAgencijaDialogComponent } from './components/dialogs/turisticka-agencija-dialog/turisticka-agencija-dialog.component';
+import { DestinacijaDialogComponent } from './components/dialogs/destinacija-dialog/destinacija-dialog.component';
 
 
 
@@ -27,7 +30,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     TuristickaAgencijaComponent,
     AranzmanComponent,
     HotelComponent,
-    DestinacijaComponent
+    DestinacijaComponent,
+    ArtikalDialogComponent,
+    TuristickaAgencijaDialogComponent,
+    DestinacijaDialogComponent
   ],
   imports: [
     BrowserModule,
