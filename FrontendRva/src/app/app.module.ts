@@ -39,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     DestinacijaComponent,
     TuristickaAgencijaDialogComponent,
     DestinacijaDialogComponent
+    
   ],
   imports: [
     BrowserModule,

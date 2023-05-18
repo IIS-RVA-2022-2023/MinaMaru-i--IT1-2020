@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Destinacija } from 'src/app/models/destinacija';
+import { DestinacijaService } from 'src/app/services/destinacija.service';
 
 @Component({
   selector: 'app-destinacija-dialog',
@@ -6,5 +11,63 @@ import { Component } from '@angular/core';
   styleUrls: ['./destinacija-dialog.component.css']
 })
 export class DestinacijaDialogComponent {
+  public flag!: number;
 
+  constructor(public snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DestinacijaDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Destinacija,
+    public destinacijaService: DestinacijaService) {  }
+
+  public add(): void {
+    console.log("ID je " + this.data.id + this.data.mesto);
+    this.destinacijaService.addDestinacija(this.data).subscribe(() => {
+      this.snackBar.open('Uspesno dodata destinacija: ' + this.data.mesto, 'OK', {
+        duration: 2500
+      })
+    }),
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message)
+        this.snackBar.open('Doslo je do greske prilikom dodavanja nove destinacije. ', 'Zatvori', {
+          duration: 2500
+        })
+      };
+  }
+
+
+  public update(): void {   
+    this.destinacijaService.updateDestinacija(this.data).subscribe(() => {
+      this.snackBar.open('Uspesno izmenjena destinacija: ' + this.data.mesto, 'OK', {
+        duration: 2500
+      })
+    }),
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message)
+        this.snackBar.open('Doslo je do greske prilikom izmene destinacije. ', 'Zatvori', {
+          duration: 2500
+        })
+      };
+
+  }
+
+  public delete(): void {
+    this.destinacijaService.deleteDestinacija(this.data.id).subscribe(() => {
+      this.snackBar.open('Uspesno obrisana destinacija: ' + this.data.id, 'OK', {
+        duration: 2500
+      })
+    }),
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message)
+        this.snackBar.open('Doslo je do greske prilikom brisanja destinacije. ', 'Zatvori', {
+          duration: 2500
+        })
+      };
+  }
+
+  public cancel(): void {
+    this.dialogRef.close();
+    this.snackBar.open('Odustali ste od izmene. ', 'Zatvori', {
+      duration: 1000
+    })
+  }
 }
+
