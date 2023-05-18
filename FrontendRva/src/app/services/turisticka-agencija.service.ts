@@ -20,11 +20,11 @@ export class TuristickaAgencijaService {
     return this.httpClient.post(TURAGENCIJA_URL, turistickaAgencija);
 }
 
-  public updateArtikl(turistickaAgencija: Turisticka_agencija): Observable<any>{
+  public updateTuristickaAgencija(turistickaAgencija: Turisticka_agencija): Observable<any>{
     return this.httpClient.put(TURAGENCIJA_URL+"/"+turistickaAgencija.id, turistickaAgencija);
 }
 
-  public deleteArtikl(turistickaAgencijaId: number): Observable<any>{
+  public deleteTuristickaAgencija(turistickaAgencijaId: number): Observable<any>{
     return this.httpClient.delete(TURAGENCIJA_URL+"/"+turistickaAgencijaId);
 }
 }

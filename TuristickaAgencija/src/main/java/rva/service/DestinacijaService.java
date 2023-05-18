@@ -31,7 +31,7 @@ public class DestinacijaService {
  	}
 
 	public boolean existsById(int id) {
-		if(destinacijaRepository.findById(id) != null) {
+		if(destinacijaRepository.existsById(id)) {
 			return true;
 		}else {
 			return false;
