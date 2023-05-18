@@ -20,6 +20,9 @@ export class DestinacijaComponent {
 
   ngOnInit(): void { this.loadData(); }
   ngOnChanges(): void { this.loadData(); }
+  /*ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }*/
 
   public loadData() {
     this.subscription = this.destinacijaService.getAllDestinacija().subscribe(

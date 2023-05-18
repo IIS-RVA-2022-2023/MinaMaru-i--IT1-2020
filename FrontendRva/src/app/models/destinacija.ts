@@ -1,4 +1,3 @@
-
 export class Destinacija {
     id!: number;
     mesto!: string;

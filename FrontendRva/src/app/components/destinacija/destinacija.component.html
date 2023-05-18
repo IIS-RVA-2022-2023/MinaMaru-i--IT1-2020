@@ -10,41 +10,43 @@
             <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
         </ng-container>
         <!--Mesto-->
-        <ng-container matColumnDef="adresa">
+        <ng-container matColumnDef="mesto">
             <mat-header-cell *matHeaderCellDef>Mesto</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.mesto }}</mat-cell>
         </ng-container>
         <!-- Drzava -->
-        <ng-container matColumnDef="kontakt">
+        <ng-container matColumnDef="drzava">
             <mat-header-cell *matHeaderCellDef>Drzava</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.drzava }}</mat-cell>
         </ng-container>
         <!--Opis-->
-        <ng-container matColumnDef="naziv">
+        <ng-container matColumnDef="opis">
             <mat-header-cell *matHeaderCellDef>Opis</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.opis }}</mat-cell>
         </ng-container>
 
-        <!-- Action Buttons -->
+        <!--Action Buttons-->
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
-                <button (click)="openDialog(1)" mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                </button>
+              <button (click)="openDialog(1)" mat-icon-button color="primary">
+                <mat-icon>add</mat-icon>
+              </button>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = index">
-                <button (click)="openDialog(2, row)" mat-icon-button color="primary">
-                    <mat-icon aria-label="Edit">edit</mat-icon>
-                </button>
-                <button (click)="openDialog(3, row)" mat-icon-button color="primary">
-                    <mat-icon aria-label="Delete">delete</mat-icon>
-                </button>
+              <button 
+              (click)="openDialog(2, row)" mat-icon-button color="primary">
+              <!--(click)="openDialog(2, row.id, row.naziv, row.adresa, row.kontakt)" za edit click i za delete-->
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <button (click)="openDialog(3, row)" mat-icon-button color="primary">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
             </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row 
-        style="cursor: pointer;" 
-        *matRowDef="let row; columns: displayedColumns">
-        </mat-row>
-    </mat-table>
-</div>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row
+            style="cursor: pointer;"
+            *matRowDef="let row; columns: displayedColumns">
+          </mat-row>
+        </mat-table>
+      </div>
