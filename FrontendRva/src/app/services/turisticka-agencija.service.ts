@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs';
 import { TURAGENCIJA_URL } from '../app.constants';
 import {Turisticka_agencija} from '../models/turisticka-agencija'

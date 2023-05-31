@@ -19,7 +19,7 @@ export class HotelService {
     return this.httpClient.post(HOTEL_URL, hotel);
   }
 
-  public deleteHotel(id: number): Observable<any> {
+  public delete(id: number): Observable<any> {
     return this.httpClient.delete(HOTEL_URL  + "/" + id);
   }
 

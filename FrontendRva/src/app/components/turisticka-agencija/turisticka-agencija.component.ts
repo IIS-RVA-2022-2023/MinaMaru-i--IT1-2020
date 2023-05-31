@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+
 import { Turisticka_agencija } from 'src/app/models/turisticka-agencija';
 import { TuristickaAgencijaService } from 'src/app/services/turisticka-agencija.service';
 import { TuristickaAgencijaDialogComponent } from '../dialogs/turisticka-agencija-dialog/turisticka-agencija-dialog.component';
@@ -17,7 +20,10 @@ export class TuristickaAgencijaComponent {
 
   subscription!: Subscription;
   displayedColumns = ['id', 'naziv', 'adresa', 'kontakt', 'actions'];
-  dataSource!: MatTableDataSource<Turisticka_agencija>;
+  
+  dataSourceTuristickaAgencija!: MatTableDataSource<Turisticka_agencija>;
+  @ViewChild(MatSort, {static: false}) sort!: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
 
   constructor(private turistickaAgencijaService: TuristickaAgencijaService, private dialog: MatDialog) { }
   ngOnInit(): void { this.loadData(); }
@@ -26,7 +32,9 @@ export class TuristickaAgencijaComponent {
     this.subscription = this.turistickaAgencijaService.getAllTurAgencije().subscribe(
       data => {
         //console.log(data);
-        this.dataSource = new MatTableDataSource(data);
+        this.dataSourceTuristickaAgencija = new MatTableDataSource(data);
+        this.dataSourceTuristickaAgencija.sort = this.sort;
+        this.dataSourceTuristickaAgencija.paginator = this.paginator;
       },
       error => {
         console.log(error.name + ' ' + error.message);
@@ -41,6 +49,18 @@ export class TuristickaAgencijaComponent {
   }
 
   
-  ngOnChanges(){this.loadData();}
-  ngOnDestroy(): void { this.subscription.unsubscribe(); }
+  applyFilter(filterValue: any) {
+    filterValue = filterValue.target.value
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLocaleLowerCase();
+    this.dataSourceTuristickaAgencija.filter = filterValue; //    JaBuKa    --> JaBuKa --> jabuka
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  ngOnChanges() {
+    this.loadData();
+  }
 }
