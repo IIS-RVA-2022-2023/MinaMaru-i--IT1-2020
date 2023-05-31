@@ -41,20 +41,20 @@ export class AranzmanDialogComponent {
   compareTo(a: any, b: any) {
     return a.id === b.id;
   }
-
+  
   public add(): void {
     this.aranzmanService.addAranzman(this.data)
       .subscribe(() => {
         this.snackBar.open('Uspešno dodat aranzman!', 'U redu', {
           duration: 2500
         })
-      }),
+      },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
         this.snackBar.open('Dogodila se greška!', 'Zatvori', {
           duration: 1500
         })
-      };
+      });
   }
 
   public update(): void {
@@ -63,13 +63,13 @@ export class AranzmanDialogComponent {
         this.snackBar.open('Uspešno modifikovan aranzman!', 'U redu', {
           duration: 2500
         })
-      }),
+      },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
         this.snackBar.open('Dogodila se greška!', 'Zatvori', {
           duration: 1500
         })
-      };
+      });
   }
 
   public delete(): void {
@@ -78,13 +78,13 @@ export class AranzmanDialogComponent {
         this.snackBar.open('Uspešno obrisan aranzman!', 'U redu', {
           duration: 2500
         })
-      }),
+      },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
         this.snackBar.open('Dogodila se greška!', 'Zatvori', {
           duration: 1500
         })
-      };
+      });
   }
 
   public cancel(): void {

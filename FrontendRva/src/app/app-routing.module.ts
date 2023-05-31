@@ -12,7 +12,7 @@ const routes: Routes = [{ path: 'turisticka-agencija', component: TuristickaAgen
 { path: 'destinacija', component: DestinacijaComponent },
 { path: 'hotel', component: HotelComponent },
 { path: 'aranzman', component:AranzmanComponent},
-{ path: '', redirectTo: '/turisticka-agenciija', pathMatch: 'full'}];
+{ path: '', redirectTo: '/turisticka-agencija', pathMatch: 'full'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
