@@ -30,50 +30,48 @@ export class HotelDialogComponent {
   compareTo(a: any, b: any) {
     return a.id == b.id;
   }
-
   public add(): void {
     this.hotelService.addHotel(this.data).subscribe(() => {
       this.snackBar.open('Uspesno dodat hotel: ' + this.data.naziv, 'OK', {
         duration: 2500
-      })
-    }),
-      (error: Error) => {
-        console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom dodavanja novog hotela. ', 'Zatvori', {
-          duration: 2500
-        })
-      };
+      });
+    },
+    (error: Error) => {
+      console.log(error.name + ' ' + error.message);
+      this.snackBar.open('Doslo je do greske prilikom dodavanja novog hotela. ', 'Zatvori', {
+        duration: 2500
+      });
+    });
   }
-
-
+  
   public update(): void {
     this.hotelService.updateHotel(this.data).subscribe(() => {
       this.snackBar.open('Uspesno izmenjen hotel: ' + this.data.naziv, 'OK', {
         duration: 2500
-      })
-    }),
-      (error: Error) => {
-        console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom izmen hotela. ', 'Zatvori', {
-          duration: 2500
-        })
-      };
-
+      });
+    },
+    (error: Error) => {
+      console.log(error.name + ' ' + error.message);
+      this.snackBar.open('Doslo je do greske prilikom izmen hotela. ', 'Zatvori', {
+        duration: 2500
+      });
+    });
   }
-
+  
   public delete(): void {
     this.hotelService.delete(this.data.id).subscribe(() => {
       this.snackBar.open('Uspesno obrisan hotel: ' + this.data.id, 'OK', {
         duration: 2500
-      })
-    }),
-      (error: Error) => {
-        console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom brisanja hotela. ', 'Zatvori', {
-          duration: 2500
-        })
-      };
+      });
+    },
+    (error: Error) => {
+      console.log(error.name + ' ' + error.message);
+      this.snackBar.open('Doslo je do greske prilikom brisanja hotela. ', 'Zatvori', {
+        duration: 2500
+      });
+    });
   }
+  
 
   public cancel(): void {
     this.dialogRef.close();

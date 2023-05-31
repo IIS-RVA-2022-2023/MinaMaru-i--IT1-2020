@@ -140,4 +140,3 @@ VALUES (nextval('aranzman_seq'), 100000, false, to_date('01.03.2023.', 'dd.mm.yy
 
 
 
-

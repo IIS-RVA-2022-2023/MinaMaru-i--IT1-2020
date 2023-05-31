@@ -11,7 +11,7 @@ import { AranzmanComponent } from './components/aranzman/aranzman.component';
 const routes: Routes = [{ path: 'turisticka-agencija', component: TuristickaAgencijaComponent},   
 { path: 'destinacija', component: DestinacijaComponent },
 { path: 'hotel', component: HotelComponent },
-//{ path: 'aranzman', component:AranzmanComponent},
+{ path: 'aranzman', component:AranzmanComponent},
 { path: '', redirectTo: '/turisticka-agenciija', pathMatch: 'full'}];
 
 @NgModule({
