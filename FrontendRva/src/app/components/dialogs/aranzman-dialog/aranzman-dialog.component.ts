@@ -44,18 +44,22 @@ export class AranzmanDialogComponent {
   
   public add(): void {
     this.aranzmanService.addAranzman(this.data)
-      .subscribe(() => {
-        this.snackBar.open('Uspešno dodat aranzman!', 'U redu', {
-          duration: 2500
-        })
-      },
-      (error: Error) => {
-        console.log(error.name + ' ' + error.message);
-        this.snackBar.open('Dogodila se greška!', 'Zatvori', {
-          duration: 1500
-        })
-      });
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.snackBar.open('Uspešno dodat aranzman!', 'U redu', {
+            duration: 2500
+          });
+        },
+        (error: any) => {
+          console.log(error);
+          this.snackBar.open('Dogodila se greška!', 'Zatvori', {
+            duration: 1500
+          });
+        }
+      );
   }
+  
 
   public update(): void {
     this.aranzmanService.updateOne(this.data)

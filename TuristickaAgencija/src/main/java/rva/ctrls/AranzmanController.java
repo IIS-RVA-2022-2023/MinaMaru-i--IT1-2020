@@ -65,7 +65,7 @@ public class AranzmanController {
  
     @PostMapping("/aranzman")
     public ResponseEntity<?> addAranzman(@RequestBody Aranzman aranzman) {
-    	if(!aranzmanService.existsById(aranzman.getId())) {
+    	if(aranzmanService.existsById(aranzman.getId())) {
     		Aranzman savedAranzman = aranzmanService.save(aranzman);
     		return ResponseEntity.status(HttpStatus.OK).body(savedAranzman);
     	}else {
