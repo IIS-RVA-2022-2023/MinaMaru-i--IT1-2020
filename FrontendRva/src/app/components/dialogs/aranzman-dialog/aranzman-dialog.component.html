@@ -4,17 +4,6 @@
     <h3 mat-dialog-title *ngIf="flag == 3">Brisanje aranzmana: {{data.id}}</h3>
   
     <form class="mat-dialog-content"  #formControl="ngForm">
-  
-      <div class="form">
-        <mat-form-field>
-          <mat-select [(ngModel)]="data.Turisticka_agencija" placeholder="Turisticka_agencija" name="Turisticka_agencija" [compareWith]="compareTo" [disabled]="flag == 3">
-            <mat-option *ngFor="let Turisticka_agencija of Turisticka_agencije" [value]="Turisticka_agencija">
-              {{ Turisticka_agencija.naziv }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    
       <div class="form">
         <mat-form-field>
           <input matInput placeholder="ukupna_cena" [(ngModel)]="data.ukupna_cena" name="ukupna_cena" [disabled]="flag == 3">
@@ -29,14 +18,22 @@
 
       <div class="form">
         <mat-form-field>
-            <input matInput [matDatepicker]="Datum_realizacije" placeholder="Datum_realizacije"
-                [(ngModel)]="data.Datum_realizacije" name="Datum_realizacije" [disabled]="flag == 3">
-            <mat-datepicker-toggle matSuffix [for]="Datum_realizacije"></mat-datepicker-toggle><!--ovde mzd malo d nzm-->
-            <mat-datepicker #Datum_realizacije></mat-datepicker>
+            <input matInput [matDatepicker]="datum_realizacije" placeholder="datum_realizacije"
+                [(ngModel)]="data.datum_realizacije" name="datum_realizacije" [disabled]="flag == 3">
+            <mat-datepicker-toggle matSuffix [for]="datum_realizacije"></mat-datepicker-toggle><!--ovde mzd malo d nzm-->
+            <mat-datepicker #datum_realizacije></mat-datepicker>
         </mat-form-field>
     </div>
 
-
+    <div class="form">
+        <mat-form-field>
+          <mat-select [(ngModel)]="data.turisticka_agencija" placeholder="Turisticka_agencija" name="Turisticka_agencija" [compareWith]="compareTo" [disabled]="flag == 3">
+            <mat-option *ngFor="let Turisticka_agencija of Turisticka_agencije" [value]="Turisticka_agencija">
+              {{ Turisticka_agencija.naziv }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
   
       
     <div mat-dialog-actions>

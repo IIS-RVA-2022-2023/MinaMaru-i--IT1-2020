@@ -13,7 +13,7 @@ import { AranzmanService } from 'src/app/services/aranzman.service';
   styleUrls: ['./aranzman-dialog.component.css']
 })
 export class AranzmanDialogComponent {
-  Turisticka_agencije!: Turisticka_agencija[];
+  public Turisticka_agencije!: Turisticka_agencija[];
   public flag!: number;
     turistickaAgencijaSubscription!: Subscription;
    
@@ -30,8 +30,8 @@ export class AranzmanDialogComponent {
 
   ngOnInit(): void {
     this.turistickaAgencijaSubscription = this.turistickaAgencijaService.getAllTurAgencije()
-      .subscribe(Turisticka_agencije => {
-        this.Turisticka_agencije = Turisticka_agencije;
+      .subscribe(data => {
+        this.Turisticka_agencije = data;
       }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message);

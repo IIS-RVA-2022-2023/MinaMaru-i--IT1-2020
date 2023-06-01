@@ -14,7 +14,7 @@ import { AranzmanDialogComponent } from '../dialogs/aranzman-dialog/aranzman-dia
   styleUrls: ['./aranzman.component.css']
 })
 export class AranzmanComponent implements OnInit, OnDestroy {
-  displayedColumns = ['id', 'ukupna_cena', 'placeno', 'Datum_realizacije', 'hotel', 'Turisticka_agencija', 'actions'];
+  displayedColumns = ['id', 'ukupna_cena', 'placeno', 'datum_realizacije', 'hotel', 'turisticka_agencija', 'actions'];
   dataSource!: MatTableDataSource<Aranzman>;
   subscription!: Subscription;
   @Input() selektovanHotel!: Hotel;

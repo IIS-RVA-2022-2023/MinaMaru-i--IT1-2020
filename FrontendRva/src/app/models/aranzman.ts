@@ -6,8 +6,8 @@ export class Aranzman {
     id!: number;
     ukupna_cena!: number;
     placeno!:boolean;
-    Datum_realizacije!: Date;
+    datum_realizacije!: Date;
     hotel!:Hotel;
-    Turisticka_agencija!: Turisticka_agencija;
+    turisticka_agencija!: Turisticka_agencija;
    
 }
