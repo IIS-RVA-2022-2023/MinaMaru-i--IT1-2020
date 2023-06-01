@@ -11,7 +11,7 @@ export class DestinacijaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAllDestinacija(): Observable<any> {
+  public getAll(): Observable<any> {
     return this.httpClient.get(`${DESTINACIJA_URL}`);
   }
 

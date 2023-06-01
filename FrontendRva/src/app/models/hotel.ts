@@ -4,8 +4,8 @@ export class Hotel {
 
     id!: number;
     naziv!:string;
-    Broj_zvezdica!: number;
-    Opis!:string;
+    broj_zvezdica!: number;
+    opis!:string;
     destinacija!:Destinacija;
 }
 

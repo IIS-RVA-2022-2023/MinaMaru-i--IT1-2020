@@ -25,7 +25,7 @@ export class DestinacijaComponent {
   }*/
 
   public loadData() {
-    this.subscription = this.destinacijaService.getAllDestinacija().subscribe(
+    this.subscription = this.destinacijaService.getAll().subscribe(
       data => {
         //console.log(data);
         this.dataSource = new MatTableDataSource(data);

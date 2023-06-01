@@ -15,7 +15,7 @@ import { HotelDialogComponent } from '../dialogs/hotel-dialog/hotel-dialog.compo
 })
 export class HotelComponent {
   subscription!: Subscription;
-  displayedColumns = ['id', 'naziv', 'Broj_zvezdica', 'Opis', 'destinacija', 'actions'];
+  displayedColumns = ['id', 'naziv', 'broj_zvezdica', 'opis', 'destinacija', 'actions'];
   dataSource!: MatTableDataSource<Hotel>;
   selektovanHotel1!: Hotel;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;

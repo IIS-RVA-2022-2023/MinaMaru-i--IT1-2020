@@ -24,9 +24,9 @@ export class HotelDialogComponent {
     public destinacijaService: DestinacijaService) { }
 
   ngOnInit() {
-    this.subscription = this.destinacijaService.getAllDestinacija().subscribe(data => { this.Destinacije = data });
+    this.subscription = this.destinacijaService.getAll().subscribe(data => { this.Destinacije = data });
   }
-
+  
   compareTo(a: any, b: any) {
     return a.id == b.id;
   }
@@ -46,7 +46,7 @@ export class HotelDialogComponent {
   
   public update(): void {
     this.hotelService.updateHotel(this.data).subscribe(() => {
-      this.snackBar.open('Uspesno izmenjen hotel: ' + this.data.naziv, 'OK', {
+      this.snackBar.open('Uspesno izmenjen hotel: ' + this.data.id, 'OK', {
         duration: 2500
       });
     },

@@ -70,7 +70,7 @@ public class HotelController {
      }
 
 	
-	@PostMapping("/hotel")
+	@PostMapping("/hotel")//!
     public ResponseEntity<?> addHotel(@RequestBody Hotel hotel) {
     	if(!hotelService.existsById(hotel.getId())) {
     		Hotel savedHotel = hotelService.save(hotel);
