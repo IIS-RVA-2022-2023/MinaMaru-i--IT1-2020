@@ -3,8 +3,13 @@
 </mat-toolbar>
 
 <div class="container mat-elavation-z8">
-    <mat-table #table [dataSource]="dataSource" class="mat-cell">
-        <!--ID-->
+    <!--Filtriranje-->
+  <mat-form-field>
+    <input matInput placeholder="Pretraga destinacija..." (keyup)="applyFilter($event)">
+  </mat-form-field>
+  <!--Ovde je sortiranje-->
+  <mat-table #table [dataSource]="dataSource" class="mat-cell" matSort>
+    <!--ID-->
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
@@ -49,4 +54,7 @@
             *matRowDef="let row; columns: displayedColumns">
           </mat-row>
         </mat-table>
-      </div>
+       <!-- Paginator-->
+    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5,10,25,100]">
+    </mat-paginator>
+  </div>

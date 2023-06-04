@@ -69,9 +69,9 @@ public class AranzmanController {
     		Aranzman savedAranzman = aranzmanService.save(aranzman);
     		return ResponseEntity.status(HttpStatus.OK).body(savedAranzman);
     	}else {
-    		return ResponseEntity.status(HttpStatus.CONFLICT).body("Resource with the same ID already exists");
-    	}       
-    }
+   		return ResponseEntity.status(HttpStatus.CONFLICT).body("Resource with the same ID already exists");
+   	}       
+   }
  
     @GetMapping("/aranzmanHotel/{id}")
     public ResponseEntity<?> getAranzmanByHotel(@PathVariable("id") int id) {
@@ -97,5 +97,4 @@ public class AranzmanController {
     	}
     }
  }
-
 

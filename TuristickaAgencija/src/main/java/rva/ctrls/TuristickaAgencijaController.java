@@ -96,7 +96,7 @@ public class TuristickaAgencijaController{
  		turistickaAgencijaService.deleteById(turistickaAgencijaId);
  		return new ResponseEntity<>("Turisticka agencija with id " + turistickaAgencijaId + " has been deleted", HttpStatus.OK);
  	}
-	
+ 	
 	
 
 }

@@ -23,19 +23,10 @@ export class AranzmanComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     public snackBar: MatSnackBar) { }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.loadData();
   }
-
-  ngOnChanges(): void {
-    if (this.selektovanHotel.id) {
-      this.loadData();
-    }
-  }
+  
 
   loadData() {
     this.subscription = this.aranzmanService.getAranzmanByHotel(this.selektovanHotel.id)
@@ -61,5 +52,18 @@ export class AranzmanComponent implements OnInit, OnDestroy {
           this.loadData();
         }
       })
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+ 
+
+  ngOnChanges(): void {
+    if (this.selektovanHotel.id) {
+      this.loadData();
+    }
   }
 }

@@ -50,17 +50,19 @@ public class DestinacijaController {
 	        List<Destinacija> destinacijas = destinacijaService.findByNazivContainingIgnoreCase(mesto);
 	        return new ResponseEntity<>(destinacijas, HttpStatus.OK);
 	    }
-
+	    
 	    @PostMapping("/destinacija")
 	    public ResponseEntity<?> addDestinacija(@RequestBody Destinacija destinacija) {
-	    	if(destinacijaService.existsById(destinacija.getId())) {
+	    	if(!destinacijaService.existsById(destinacija.getId())) {
 	    		Destinacija savedDestinacija = destinacijaService.save(destinacija);
 	            return ResponseEntity.status(HttpStatus.OK).body(savedDestinacija);
 	    	}else {
 	    		return ResponseEntity.status(HttpStatus.CONFLICT).body("Resource with the same ID already exists");
 	    	}       
 	    }
-
+ 
+	    
+	    
 
 	    @PutMapping(value = "/destinacija/{id}")
 	    public ResponseEntity<Destinacija> updateDestinacija(@RequestBody Destinacija destinacija, @PathVariable("id") int id) {
@@ -74,12 +76,13 @@ public class DestinacijaController {
 
 	    @DeleteMapping("/destinacija/{id}")
 	    public ResponseEntity<?> delete(@PathVariable int id) {
-	    	if(destinacijaService.existsById(id)) {
-	    		destinacijaService.deleteById(id);
-	    		return ResponseEntity.ok("Resource with an id:" + id + " has been deleted");
-	    	}else {
-	    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested resource has not been found");
+	    	if(!destinacijaService.existsById(id)) {
+	    		return ResponseEntity.status(HttpStatus.NOT_FOUND).
+	    				body("Destinacija with id " + id + " not found");
 	    	}
+	    		destinacijaService.deleteById(id);
+	    		return new ResponseEntity<>("Destinacija with id " + id + " has been deleted", HttpStatus.OK);
+	    	
 	    }
 
 }

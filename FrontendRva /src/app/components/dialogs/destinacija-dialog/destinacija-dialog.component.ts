@@ -32,9 +32,7 @@ export class DestinacijaDialogComponent {
         })
       };
   }
-
-
-  public update(): void {   
+public update(): void {   
     this.destinacijaService.updateDestinacija(this.data).subscribe(() => {
       this.snackBar.open('Uspesno izmenjena destinacija: ' + this.data.mesto, 'OK', {
         duration: 2500
@@ -49,19 +47,25 @@ export class DestinacijaDialogComponent {
 
   }
 
-  public delete(): void {
-    this.destinacijaService.deleteDestinacija(this.data.id).subscribe(() => {
-      this.snackBar.open('Uspesno obrisana destinacija: ' + this.data.id, 'OK', {
+ 
+public delete(): void {
+  this.destinacijaService.deleteDestinacija(this.data.id).subscribe(() => {
+    
+    console.error('Uspesno brisanja turisticke agencije:');
+    this.snackBar.open('Uspesno obrisana turisticka agencija: ' + this.data.mesto, 'OK', {
+      duration: 2500
+    });
+  },
+    (error: Error) => {
+      console.error('Greska prilikom brisanja turisticke agencije:', error);
+      this.snackBar.open('Doslo je do greske prilikom brisanja turisticka agencija. ', 'Zatvori', {
         duration: 2500
-      })
-    }),
-      (error: Error) => {
-        console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom brisanja destinacije. ', 'Zatvori', {
-          duration: 2500
-        })
-      };
-  }
+      });
+    }
+  );
+}
+  
+  
 
   public cancel(): void {
     this.dialogRef.close();
