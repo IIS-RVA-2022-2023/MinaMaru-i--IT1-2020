@@ -65,10 +65,10 @@ export class HotelDialogComponent {
       });
     },
     (error: Error) => {
-      console.log(error.name + ' ' + error.message);
+    /*  console.log(error.name + ' ' + error.message);
       this.snackBar.open('Doslo je do greske prilikom brisanja hotela. ', 'Zatvori', {
         duration: 2500
-      });
+      });*/
     });
   }
   

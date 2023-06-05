@@ -57,10 +57,10 @@ public delete(): void {
     });
   },
     (error: Error) => {
-      console.error('Greska prilikom brisanja turisticke agencije:', error);
-      this.snackBar.open('Doslo je do greske prilikom brisanja turisticka agencija. ', 'Zatvori', {
+     /* console.error('Greska prilikom brisanja turisticke agencije:', error);
+      this.snackBar.open('Doslo je do greske prilikom brisanja destinacija. ', 'Zatvori', {
         duration: 2500
-      });
+      });*/
     }
   );
 }

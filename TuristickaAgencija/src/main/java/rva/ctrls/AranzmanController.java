@@ -1,7 +1,9 @@
 package rva.ctrls;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +53,7 @@ public class AranzmanController {
  		List<Aranzman> aranzmans = aranzmanService.findByPlacenoTrue();
  		return new ResponseEntity<>(aranzmans, HttpStatus.OK);
  	}
-//ovde dodala /
+//ovde dodala 
     @PutMapping("/aranzman/{id}")
     public ResponseEntity<Aranzman> updateOne(@RequestBody Aranzman aranzman,
             @PathVariable("id") int id) {
@@ -64,15 +66,29 @@ public class AranzmanController {
     }
  
     @PostMapping("/aranzman")
-    public ResponseEntity<?> addAranzman(@RequestBody Aranzman aranzman) {
-    	if(aranzmanService.existsById(aranzman.getId())) {
-    		Aranzman savedAranzman = aranzmanService.save(aranzman);
-    		return ResponseEntity.status(HttpStatus.OK).body(savedAranzman);
-    	}else {
-   		return ResponseEntity.status(HttpStatus.CONFLICT).body("Resource with the same ID already exists");
-   	}       
-   }
- 
+	public ResponseEntity<Aranzman> addAranzman(@RequestBody Aranzman aranzman){
+		Aranzman savedAranzman;
+		
+		if(!aranzmanService.existsById(aranzman.getId())) {
+			savedAranzman = aranzmanService.save(aranzman);
+		} else {
+			List<Aranzman> lista = aranzmanService.getAll();
+			int najvecaVrednost = 1;
+			for(int i=0; i<lista.size(); i++) {
+				if(najvecaVrednost <= lista.get(i).getId()) {
+					najvecaVrednost = lista.get(i).getId();
+				}
+				
+				if(i == lista.size() - 1) {
+					najvecaVrednost++;
+				}
+			}
+			aranzman.setId(najvecaVrednost);
+			savedAranzman = aranzmanService.save(aranzman);
+		}
+		URI uri = URI.create("/aranzman/" + savedAranzman.getId());
+		return ResponseEntity.created(uri).body(savedAranzman);
+	}
     @GetMapping("/aranzmanHotel/{id}")
     public ResponseEntity<?> getAranzmanByHotel(@PathVariable("id") int id) {
         Optional<Hotel> hotelOpt = hotelService.findById(id);
@@ -97,4 +113,3 @@ public class AranzmanController {
     	}
     }
  }
-
