@@ -41,6 +41,7 @@ private static final long serialVersionUID = 1L;
 	private Hotel hotel;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="Turisticka_agencija")
 	private Turisticka_agencija Turisticka_agencija;
 

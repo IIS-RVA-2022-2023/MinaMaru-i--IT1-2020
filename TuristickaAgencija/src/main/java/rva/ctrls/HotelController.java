@@ -95,11 +95,12 @@ public class HotelController {
 	
 	@DeleteMapping("/hotel/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-    	if(hotelService.existsById(id)) {
-    		hotelService.deleteById(id);
-    		return ResponseEntity.ok("Resource with an id:" + id + " has been deleted");
-    	}else {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested resource has not been found");
+		if(!hotelService.existsById(id)) {
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).
+    				body("Hotel with id " + id + " not found");
     	}
+    		hotelService.deleteById(id);
+    		return new ResponseEntity<>("Hotel with id " + id + " has been deleted", HttpStatus.OK);
+    	
     }
 	}

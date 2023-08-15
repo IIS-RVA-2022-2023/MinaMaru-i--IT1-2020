@@ -33,7 +33,7 @@ export class AranzmanComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => this.dataSource = data,
         error: (error) => {
-          this.snackBar.open('Aranzman nema hotel', 'Zatvori', {
+          this.snackBar.open('Za odabrani hotel nema aranzmana', 'Zatvori', {
             duration: 2500
           }); this.dataSource = new MatTableDataSource<Aranzman>
         },
@@ -43,12 +43,12 @@ export class AranzmanComponent implements OnInit, OnDestroy {
   public openDialog(flag: number, aranzman?: Aranzman) {
     const dialogRef = this.dialog.open(AranzmanDialogComponent, { data: (aranzman ? aranzman : new Aranzman()) });
     dialogRef.componentInstance.flag = flag;
-    if (flag === 1) {
+    if (flag == 1) {
       dialogRef.componentInstance.data.hotel = this.selektovanHotel;
     }
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result === 1) {
+        if (result == 1) {
           this.loadData();
         }
       })

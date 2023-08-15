@@ -35,12 +35,12 @@ ngOnInit(): void {
 public add():void{
   this.aranzmanService.addAranzman(this.data).subscribe(
     () => {
-      this.snackBar.open('Aranzman je uspesno dodat!', 'Ok', {duration:4500});
+      this.snackBar.open('Aranzman je uspesno dodat', 'Ok', {duration:4500});
     }
   ),
   (error:Error) => {
     console.log(error.name + ' ' + error.message);
-    this.snackBar.open('Dogodila se greska', 'Ok', {duration:2500});
+    this.snackBar.open('Dogodila se greska prilikom dodavanja aranzmana', 'Zatvori', {duration:2500});
   }
 }
 
@@ -52,20 +52,24 @@ public update():void{
   ),
   (error:Error) => {
     console.log(error.name + ' ' + error.message);
-    this.snackBar.open('Dogodila se greska', 'Ok', {duration:2500});
+    this.snackBar.open('Dogodila se greska prilikom izmene', 'Ok', {duration:2500});
   }
 }
 
-public delete():void{
+public delete(): void {
   this.aranzmanService.delete(this.data.id).subscribe(
     () => {
-      this.snackBar.open('Aranzman je izbrisan!', 'Ok', {duration:4500});
+      this.snackBar.open('Aranzman je uspešno obrisana!' , 'Ok', {
+        duration: 2500
+      });
+    },
+    (error: Error) => {
+      console.log(error.name + ' ' + error.message);
+      this.snackBar.open('Obrisana. ', 'Ok', {
+        duration: 2500
+      });
     }
-  ),
-  (error:Error) => {
-    console.log(error.name + ' ' + error.message);
-    this.snackBar.open('Dogodila se greska', 'Ok', {duration:2500});
-  }
+  );
 }
 
 public cancel():void{

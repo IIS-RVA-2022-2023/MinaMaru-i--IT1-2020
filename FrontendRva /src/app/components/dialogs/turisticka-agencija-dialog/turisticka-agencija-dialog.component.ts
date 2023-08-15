@@ -21,53 +21,50 @@ export class TuristickaAgencijaDialogComponent {
   
     
   public add(): void {
-    console.log("ID je " + this.dataTuristickaAgencija.id + this.dataTuristickaAgencija.naziv);
+    //console.log("ID je " + this.dataTuristickaAgencija.id + this.dataTuristickaAgencija.naziv);
     this.turistickaAgencijaService.addTuristickaAgnecija(this.dataTuristickaAgencija).subscribe(() => {
-      this.snackBar.open('Uspesno dodata agencija: ' + this.dataTuristickaAgencija.naziv, 'OK', {
+      this.snackBar.open('Uspesno dodata turisticka agencija: ' + this.dataTuristickaAgencija.naziv, 'OK', {
         duration: 2500
       })
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom dodavanja nove agencije. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom dodavanja nove turisticke agencije. ', 'Zatvori', {
           duration: 2500
         })
       };
   }
 public update(): void {   
     this.turistickaAgencijaService.updateTuristickaAgencija(this.dataTuristickaAgencija).subscribe(() => {
-      this.snackBar.open('Uspesno izmenjena agencija: ' + this.dataTuristickaAgencija.naziv, 'OK', {
+      this.snackBar.open('Uspesno izmenjeni podaci o turistickoj agenciji ' + this.dataTuristickaAgencija.naziv, 'OK', {
         duration: 2500
       })
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom izmene agencije. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom izmene podataka o turistickoj agenciji. ', 'Zatvori', {
           duration: 2500
         })
       };
 
   }
-
- 
-public delete(): void {
-  this.turistickaAgencijaService.deleteTuristickaAgencija(this.dataTuristickaAgencija.id).subscribe(() => {
-    
-    console.error('Uspesno brisanja turisticke agencije:');
-    this.snackBar.open('Uspesno obrisana turisticka agencija: ' + this.dataTuristickaAgencija.naziv, 'OK', {
-      duration: 2500
-    });
-    
-  },
-    (error: Error) => {
-     /* console.error('Greska prilikom brisanja turisticke agencije:', error);
-      this.snackBar.open('Doslo je do greske prilikom brisanja destinacija. ', 'Zatvori', {
-        duration: 2500
-      });*/
-    }
-  );
-}
+  public delete(): void {
+    this.turistickaAgencijaService.deleteTuristickaAgencija(this.dataTuristickaAgencija.id).subscribe(
+      () => {
+        this.snackBar.open('Turistička agencija je uspešno obrisana!' + this.dataTuristickaAgencija.naziv, 'Ok', {
+          duration: 2500
+        });
+      },
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Obrisana. ', 'Ok', {
+          duration: 2500
+        });
+      }
+    );
+  }
   
+
   
 
   public cancel(): void {

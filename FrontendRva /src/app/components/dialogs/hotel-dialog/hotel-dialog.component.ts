@@ -46,30 +46,32 @@ export class HotelDialogComponent {
   
   public update(): void {
     this.hotelService.updateHotel(this.data).subscribe(() => {
-      this.snackBar.open('Uspesno izmenjen hotel: ' + this.data.id, 'OK', {
+      this.snackBar.open('Uspesno izmenjeni podaci o hotelu: ' + this.data.id, 'OK', {
         duration: 2500
       });
     },
     (error: Error) => {
       console.log(error.name + ' ' + error.message);
-      this.snackBar.open('Doslo je do greske prilikom izmen hotela. ', 'Zatvori', {
+      this.snackBar.open('Doslo je do greske prilikom izmen podataka o  hotelu. ', 'Zatvori', {
         duration: 2500
       });
     });
   }
   
   public delete(): void {
-    this.hotelService.delete(this.data.id).subscribe(() => {
-      this.snackBar.open('Uspesno obrisan hotel: ' + this.data.id, 'OK', {
-        duration: 2500
-      });
-    },
-    (error: Error) => {
-    /*  console.log(error.name + ' ' + error.message);
-      this.snackBar.open('Doslo je do greske prilikom brisanja hotela. ', 'Zatvori', {
-        duration: 2500
-      });*/
-    });
+    this.hotelService.delete(this.data.id).subscribe(
+      () => {
+        this.snackBar.open('Hotel je uspešno obrisana!' + this.data.naziv, 'Ok', {
+          duration: 2500
+        });
+      },
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Obrisana. ', 'Ok', {
+          duration: 2500
+        });
+      }
+    );
   }
   
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild , Inject} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -62,22 +62,24 @@ export class HotelComponent {
   //iz htmla prosledjujemo ove podatke dijalogu
   openDialog(flag: number, hotel?: Hotel): void {
     const dialogRef = this.dialog.open(HotelDialogComponent, { data: (hotel ? hotel : new Hotel()) });
-    //otvara modalni dijalog odgovarajuće komponente
-    //vracamo instancu keirane komponente dialoga
+  
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
-      if (res === 1) //uspesno 
-      {
-        //ponovo učitaj podatke
+      if (res == 1) {
         this.loadData();
-      }
+      } 
+      
     })
   }
+  
 
   selectRow(row: any) {
     this.selektovanHotel1 = row;
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
   applyFilter(filterValue: any) {
     filterValue = filterValue.target.value
     filterValue = filterValue.trim();

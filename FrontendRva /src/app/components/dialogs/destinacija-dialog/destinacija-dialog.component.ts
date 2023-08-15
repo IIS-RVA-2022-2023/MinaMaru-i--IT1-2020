@@ -19,7 +19,7 @@ export class DestinacijaDialogComponent {
     public destinacijaService: DestinacijaService) {  }
 
   public add(): void {
-    console.log("ID je " + this.data.id + this.data.mesto);
+   // console.log("ID je " + this.data.id + this.data.mesto);
     this.destinacijaService.addDestinacija(this.data).subscribe(() => {
       this.snackBar.open('Uspesno dodata destinacija: ' + this.data.mesto, 'OK', {
         duration: 2500
@@ -34,13 +34,13 @@ export class DestinacijaDialogComponent {
   }
 public update(): void {   
     this.destinacijaService.updateDestinacija(this.data).subscribe(() => {
-      this.snackBar.open('Uspesno izmenjena destinacija: ' + this.data.mesto, 'OK', {
+      this.snackBar.open('Uspesno izmenjeni podaci o  destinaciji: ' + this.data.mesto, 'OK', {
         duration: 2500
       })
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom izmene destinacije. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom izmene podataka o destinaciji. ', 'Zatvori', {
           duration: 2500
         })
       };
@@ -48,23 +48,21 @@ public update(): void {
   }
 
  
-public delete(): void {
-  this.destinacijaService.deleteDestinacija(this.data.id).subscribe(() => {
-    
-    console.error('Uspesno brisanja turisticke agencije:');
-    this.snackBar.open('Uspesno obrisana turisticka agencija: ' + this.data.mesto, 'OK', {
-      duration: 2500
-    });
-  },
-    (error: Error) => {
-     /* console.error('Greska prilikom brisanja turisticke agencije:', error);
-      this.snackBar.open('Doslo je do greske prilikom brisanja destinacija. ', 'Zatvori', {
-        duration: 2500
-      });*/
-    }
-  );
-}
-  
+  public delete(): void {
+    this.destinacijaService.deleteDestinacija(this.data.id).subscribe(
+      () => {
+        this.snackBar.open('Destinacijaje uspešno obrisana!' + this.data.mesto, 'Ok', {
+          duration: 2500
+        });
+      },
+      (error: Error) => {
+        console.log(error.name + ' ' + error.message);
+        this.snackBar.open('Obrisana. ', 'Ok', {
+          duration: 2500
+        });
+      }
+    );
+  }
   
 
   public cancel(): void {
