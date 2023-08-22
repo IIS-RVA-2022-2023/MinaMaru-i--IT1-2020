@@ -51,13 +51,13 @@ public update(): void {
   public delete(): void {
     this.destinacijaService.deleteDestinacija(this.data.id).subscribe(
       () => {
-        this.snackBar.open('Destinacijaje uspešno obrisana!' + this.data.mesto, 'Ok', {
+        this.snackBar.open('Destinacijaje uspešno obrisana! ', 'Ok', {
           duration: 2500
         });
       },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
-        this.snackBar.open('Obrisana. ', 'Ok', {
+        this.snackBar.open('Doslo je do greske prilikom brisanja destinacija. ', 'Ok', {
           duration: 2500
         });
       }

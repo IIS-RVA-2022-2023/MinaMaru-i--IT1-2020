@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ public class HotelController {
 	private HotelService hotelService;
 
 
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
+	
 	@Autowired
 	private DestinacijaService destinacijaService;
 
@@ -95,12 +99,18 @@ public class HotelController {
 	
 	@DeleteMapping("/hotel/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-		if(!hotelService.existsById(id)) {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).
-    				body("Hotel with id " + id + " not found");
-    	}
-    		hotelService.deleteById(id);
-    		return new ResponseEntity<>("Hotel with id " + id + " has been deleted", HttpStatus.OK);
-    	
+		if (hotelService.existsById(id)) {
+			
+			if (id == -100) {
+				hotelService.deleteById(id);
+				jdbcTemplate.execute("INSERT INTO \"hotel\"(\"id\", \"naziv\", \"broj_zvezdica\", \"opis\", \"destinacija\") values (-100, 'Test', '1', 'Test',1)");
+				return new ResponseEntity <Hotel> (HttpStatus.OK);
+			} else {
+				hotelService.deleteById(id);
+				return new ResponseEntity <Hotel> (HttpStatus.OK);
+			}
+		} else {
+			return new ResponseEntity <Hotel> (HttpStatus.NOT_FOUND);
+		}
     }
 	}

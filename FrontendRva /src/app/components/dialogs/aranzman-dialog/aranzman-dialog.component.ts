@@ -59,13 +59,13 @@ public update():void{
 public delete(): void {
   this.aranzmanService.delete(this.data.id).subscribe(
     () => {
-      this.snackBar.open('Aranzman je uspešno obrisana!' , 'Ok', {
+      this.snackBar.open('Aranzman je uspešno obrisan!' , 'Ok', {
         duration: 2500
       });
     },
     (error: Error) => {
       console.log(error.name + ' ' + error.message);
-      this.snackBar.open('Obrisana. ', 'Ok', {
+      this.snackBar.open('Doslo je do greske prilikom brisanja aranzmana. ', 'Ok', {
         duration: 2500
       });
     }

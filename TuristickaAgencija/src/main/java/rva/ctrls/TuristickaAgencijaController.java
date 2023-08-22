@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import rva.models.Turisticka_agencija;
 import rva.service.TuristickaAgencijaService;
@@ -24,6 +26,10 @@ public class TuristickaAgencijaController{
 
 	@Autowired
 	private TuristickaAgencijaService turistickaAgencijaService;
+	
+	
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
 
 	/*@GetMapping("/turistickaAgencija")
 	public List<Turisticka_agencija> getAllTurAgencije(){
@@ -89,12 +95,28 @@ public class TuristickaAgencijaController{
 
  	@DeleteMapping("/turistickaAgencija/{id}")
  	public ResponseEntity<?> deleteTuristickaAgencija(@PathVariable("id")int turistickaAgencijaId){
- 		if(!turistickaAgencijaService.existsById(turistickaAgencijaId)) {
+ 		/*if(!turistickaAgencijaService.existsById(turistickaAgencijaId)) {
  			return ResponseEntity.status(HttpStatus.NOT_FOUND)
  			        .body("Turisticka agencija with id " + turistickaAgencijaId + " not found");
  		}
  		turistickaAgencijaService.deleteById(turistickaAgencijaId);
  		return new ResponseEntity<>("Turisticka agencija with id " + turistickaAgencijaId + " has been deleted", HttpStatus.OK);
+ 	*/
+ 		
+
+ 		if (turistickaAgencijaService.existsById(turistickaAgencijaId)) {
+			
+			if (turistickaAgencijaId == -100) {
+				turistickaAgencijaService.deleteById(turistickaAgencijaId);
+				jdbcTemplate.execute("INSERT INTO \"turisticka_agencija\"(\"id\", \"naziv\", \"adresa\", \"kontakt\") values (-100, 'Test', 'test', '123')");
+				return new ResponseEntity <Turisticka_agencija> (HttpStatus.OK);
+			} else {
+				turistickaAgencijaService.deleteById(turistickaAgencijaId);
+				return new ResponseEntity <Turisticka_agencija> (HttpStatus.OK);
+			}
+		} else {
+			return new ResponseEntity <Turisticka_agencija> (HttpStatus.NOT_FOUND);
+		}
  	}
  	
 	

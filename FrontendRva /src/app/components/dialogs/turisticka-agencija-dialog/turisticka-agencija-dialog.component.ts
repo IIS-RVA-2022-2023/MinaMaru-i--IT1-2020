@@ -51,18 +51,18 @@ public update(): void {
   public delete(): void {
     this.turistickaAgencijaService.deleteTuristickaAgencija(this.dataTuristickaAgencija.id).subscribe(
       () => {
-        this.snackBar.open('Turistička agencija je uspešno obrisana!' + this.dataTuristickaAgencija.naziv, 'Ok', {
+        this.snackBar.open('Turistička agencija '+ this.dataTuristickaAgencija.naziv + ' je uspešno obrisana!' , 'Ok', {
           duration: 2500
         });
       },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
-        this.snackBar.open('Obrisana. ', 'Ok', {
+        this.snackBar.open('Doslo je do greske prilikom brisanja turisticke agencije ', 'Ok', {
           duration: 2500
         });
       }
     );
-  }
+    }    
   
 
   

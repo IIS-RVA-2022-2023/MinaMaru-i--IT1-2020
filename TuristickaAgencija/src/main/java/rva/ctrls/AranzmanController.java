@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,10 @@ import rva.models.*;
 @RestController
 public class AranzmanController {
 
+
+
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
     private AranzmanService aranzmanService;
@@ -105,11 +110,18 @@ public class AranzmanController {
     }
     @DeleteMapping("/aranzman/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-    	if(aranzmanService.existsById(id)) {
-    		aranzmanService.deleteById(id);
-    		return ResponseEntity.ok("Resource with an id:" + id + " has been deleted");
-    	}else {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested resource has not been found");
-    	}
+    	if (aranzmanService.existsById(id)) {
+    		
+			if (id == -100) {
+				aranzmanService.deleteById(id);
+				jdbcTemplate.execute("INSERT INTO \"aranzman\"(\"id\", \"datum_realizacije\", \"placeno\", \"ukupna_cena\", \"hotel\", \"turisticka_agencija\") values (-100, 'to_date('01.03.2023.', 'dd.mm.yyyy.')', '123', 1, 1)");
+				return new ResponseEntity <Aranzman> (HttpStatus.OK);
+			} else {
+				aranzmanService.deleteById(id);
+				return new ResponseEntity <Aranzman> (HttpStatus.OK);
+			}
+		} else {
+			return new ResponseEntity <Aranzman> (HttpStatus.NOT_FOUND);
+		}
     }
  }

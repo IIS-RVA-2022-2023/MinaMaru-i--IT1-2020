@@ -61,13 +61,13 @@ export class HotelDialogComponent {
   public delete(): void {
     this.hotelService.delete(this.data.id).subscribe(
       () => {
-        this.snackBar.open('Hotel je uspešno obrisana!' + this.data.naziv, 'Ok', {
+        this.snackBar.open('Hotel je uspešno obrisana! ' ,  'Ok', {
           duration: 2500
         });
       },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
-        this.snackBar.open('Obrisana. ', 'Ok', {
+        this.snackBar.open('Doslo je do greske prilikom brisanja hotela. ', 'Ok', {
           duration: 2500
         });
       }
